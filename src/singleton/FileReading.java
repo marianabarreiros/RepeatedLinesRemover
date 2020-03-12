@@ -7,10 +7,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toSet;
 
 public class FileReading {
 
@@ -28,20 +28,19 @@ public class FileReading {
 
     private Path getFilePath() throws URISyntaxException {
         final String FILE = "file" + File.separator + "records.txt";
-        return Paths.get(getClass().getClassLoader().getResource(FILE).toURI());
+        return Paths.get(Objects.requireNonNull(getClass().getClassLoader().getResource(FILE)).toURI());
     }
 
-    public void getFilledLinesListInFile() throws URISyntaxException {
+    protected Set getFilledLinesListInFile() throws URISyntaxException {
         Path filePath = getFilePath();
         Set<String> list = new HashSet<>();
 
         try (Stream<String> stream = Files.lines(filePath, StandardCharsets.ISO_8859_1)) {
-            list = stream
-                    .collect(Collectors.toSet());
+            list = stream.collect(toSet());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        list.forEach(System.out::println);
+        return list;
     }
 }
