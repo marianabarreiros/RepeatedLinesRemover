@@ -27,7 +27,7 @@ public class BecomeASQLCommand {
         for(int i = 0; i <=list.size(); i++){
             String str = list.get(i);
             String[] splitStr = str.split("\t");
-            System.out.println("SELECT " + "'"+ splitStr[0] +"'" + " AS GLIESE_CODE," + "'"+ splitStr[1]+"'" + " AS PROGRESS_CODE," + "'"+ splitStr[3]+"'" + " AS NAME");
+            System.out.println("SELECT " + "'"+ splitStr[0] +"'" + " AS GLIESE_CODE," + "'"+ splitStr[1]+"'" + " AS PROGRESS_CODE," + "'"+ splitStr[2]+"'" + " AS NAME");
             System.out.println("UNION");
         }
     }
